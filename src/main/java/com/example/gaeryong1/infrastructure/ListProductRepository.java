@@ -19,4 +19,19 @@ public class ListProductRepository {
         products.add(product);
         return product;
     }
+
+    // 특정 아이디의 상품 조회
+    public Product findById(Long id){
+        return products.stream()
+                .filter(product -> product.sameId(id))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    // 전체 상품 조회
+    public List<Product> findAll(){
+        return products;
+    }
+
+
 }

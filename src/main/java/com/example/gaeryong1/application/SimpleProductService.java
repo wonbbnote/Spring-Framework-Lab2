@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SimpleProductService {
 
@@ -28,5 +30,19 @@ public class SimpleProductService {
         ProductDto savedProductDto = modelMapper.map(savedProduct, ProductDto.class);
         // 4. DTO를 변환하는 코드
         return savedProductDto;
+    }
+
+    public ProductDto findById(Long id){
+        Product product = listProductRepository.findById(id);
+        ProductDto productDto = modelMapper.map(product, ProductDto.class);
+        return productDto;
+    }
+
+    public List<ProductDto> findAll(){
+        List<Product> products = listProductRepository.findAll();
+        List<ProductDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .toList();
+        return productDtos;
     }
 }

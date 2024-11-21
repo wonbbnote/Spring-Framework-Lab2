@@ -3,10 +3,9 @@ package com.example.gaeryong1.presentation;
 import com.example.gaeryong1.application.SimpleProductService;
 import com.example.gaeryong1.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -21,6 +20,16 @@ public class ProductController {
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public ProductDto createProduct(@RequestBody ProductDto productDto){
         return simpleProductService.add(productDto);
+    }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    public ProductDto findProductById(@PathVariable Long id){
+        return simpleProductService.findById(id);
+    }
+
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    public List<ProductDto> findAllProducts(){
+        return simpleProductService.findAll();
     }
 
 }
