@@ -1,5 +1,6 @@
 package com.example.gaeryong1.domain;
 
+
 public class Product {
     private Long id;
     private String name;
@@ -13,5 +14,9 @@ public class Product {
 
     public boolean sameId(Long id) {
         return this.id.equals(id);
+    }
+
+    public Boolean containsName(String name){
+        return this.name.contains(name);
     }
 }
