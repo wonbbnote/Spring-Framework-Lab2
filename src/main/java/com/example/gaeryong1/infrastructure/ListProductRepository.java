@@ -41,5 +41,16 @@ public class ListProductRepository {
                 .toList();
     }
 
+    public Product update(Product product){
+        Integer indexToModify = products.indexOf(product);
+        products.set(indexToModify, product);
+        return product;
+    }
+
+    public void delete(Long id){
+        Product product = this.findById(id);
+        products.remove(product);
+    }
+
 
 }
